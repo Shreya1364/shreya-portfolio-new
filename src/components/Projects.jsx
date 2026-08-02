@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 
 import customerImage from "../assets/projects/customer-analysis.jpg";
-import superStoreImage from "../assets/projects/super store analysis dashboard.jpg";
+import superStoreImage from "../assets/projects/super-store-analysis-dashboard.jpg";
 
 
 const projects = [
