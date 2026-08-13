@@ -34,7 +34,6 @@ function About() {
           />
         </motion.div>
 
-
         {/* ================= RIGHT - ABOUT ================= */}
         <motion.div
           initial={{ opacity: 0, x: 30 }}
@@ -42,7 +41,6 @@ function About() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-
           <p className="text-gray-300 leading-8 text-lg">
             I am a Computer Science Engineering graduate with a strong
             interest in Data Analytics and Business Intelligence. Through
@@ -58,9 +56,7 @@ function About() {
             techniques, data visualization tools, and emerging technologies
             to enhance my skills and contribute to impactful business solutions.
           </p>
-
         </motion.div>
-
 
         {/* ================= LEFT - LOCATION ================= */}
         <motion.div
@@ -70,7 +66,6 @@ function About() {
           viewport={{ once: true }}
           className="p-5 rounded-2xl border border-slate-700 bg-slate-900/40 shadow-lg"
         >
-
           <div className="flex items-center gap-4">
 
             {/* Location Icon */}
@@ -90,9 +85,7 @@ function About() {
             </div>
 
           </div>
-
         </motion.div>
-
 
         {/* ================= RIGHT - EDUCATION ================= */}
         <motion.div
@@ -116,9 +109,8 @@ function About() {
                 Education
               </h3>
 
-              {/* B.Tech */}
+              {/* ================= B.TECH ================= */}
               <div>
-
                 <p className="text-gray-200 font-medium">
                   B.Tech in Computer Science & Engineering
                 </p>
@@ -128,19 +120,15 @@ function About() {
                 </p>
 
                 <p className="text-gray-500 text-sm mt-1">
-                  2023 – 2026 · CGPA 7.17
+                  2023 – 2026 · CGPA 7.5
                 </p>
-
               </div>
-
 
               {/* Divider */}
               <div className="border-t border-slate-700 my-5"></div>
 
-
-              {/* Diploma */}
+              {/* ================= DIPLOMA ================= */}
               <div>
-
                 <p className="text-gray-200 font-medium">
                   Diploma in Computer Engineering
                 </p>
@@ -152,7 +140,24 @@ function About() {
                 <p className="text-gray-500 text-sm mt-1">
                   2020 – 2023 · 83.29%
                 </p>
+              </div>
 
+              {/* Divider */}
+              <div className="border-t border-slate-700 my-5"></div>
+
+              {/* ================= 10TH / SSC ================= */}
+              <div>
+                <p className="text-gray-200 font-medium">
+                  Secondary School Certificate (SSC)
+                </p>
+
+                <p className="text-gray-400 text-sm mt-1">
+                  New English School, Satara
+                </p>
+
+                <p className="text-gray-500 text-sm mt-1">
+                  2019 – 2020 · 87%
+                </p>
               </div>
 
             </div>
