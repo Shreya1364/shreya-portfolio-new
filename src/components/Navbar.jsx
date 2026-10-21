@@ -1,176 +1,62 @@
-import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Menu, X, Code2 } from "lucide-react";
+
+const navLinks = [
+  ["about", "About"],
+  ["skills", "Skills"],
+  ["experience", "Experience"],
+  ["projects", "Projects"],
+  ["certificates", "Certificates"],
+  ["achievements", "Achievements"],
+  ["contact", "Contact"],
+];
 
 function Navbar() {
-
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
 
-
   useEffect(() => {
-
     const handleScroll = () => {
-
-  const sections = [
-    "home",
-    "about",
-    "skills",
-    "experience",
-    "projects",
-    "certificates",
-    "achievements",
-    "contact"
-  ];
-
-  const scrollPosition = window.scrollY + 200;
-
-
-  sections.forEach((section) => {
-
-    const element = document.getElementById(section);
-
-    if (element) {
-
-      const sectionTop = element.offsetTop;
-      const sectionHeight = element.offsetHeight;
-
-
-      if (
-        scrollPosition >= sectionTop &&
-        scrollPosition < sectionTop + sectionHeight
-      ) {
-        setActiveSection(section);
-      }
-
-    }
-
-  });
-
-};
-
-
-    window.addEventListener("scroll", handleScroll);
-
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
+      const current = ["home", ...navLinks.map(([id]) => id)].find((id) => {
+        const el = document.getElementById(id);
+        if (!el) return false;
+        const rect = el.getBoundingClientRect();
+        return rect.top <= 180 && rect.bottom > 180;
+      });
+      if (current) setActiveSection(current);
     };
-
-
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-
-
-  const navLinks = [
-    "home",
-    "about",
-    "skills",
-    "experience",
-    "projects",
-    "certificates",
-    "achievements",
-    "contact"
-  ];
-
-
+  const closeMenu = (id) => {
+    setActiveSection(id);
+    setIsOpen(false);
+  };
 
   return (
-
-    <nav className="fixed top-0 left-0 w-full z-50 bg-slate-950/80 backdrop-blur-md">
-
-      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-
-
-        {/* Logo */}
-        <h1 className="text-2xl font-bold text-blue-500">
-          Shreya Jadhav
-        </h1>
-
-
-
-        {/* Desktop Menu */}
-        <div className="hidden md:flex items-center gap-8">
-
-          {navLinks.map((link) => (
-
-            <a
-              key={link}
-              href={`#${link}`}
-              className={`capitalize transition ${
-                activeSection === link
-                  ? "text-blue-500"
-                  : "hover:text-blue-500"
-              }`}
-            >
-              {link}
-            </a>
-
-          ))}
-
-
-
+    <nav className="fixed inset-x-0 top-0 z-50 border-b border-white/[0.06] bg-slate-950/80 backdrop-blur-xl">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8">
+        <a href="#home" onClick={() => closeMenu("home")} className="flex items-center gap-2.5 font-semibold tracking-tight text-white">
+          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-violet-500/15 text-violet-300"><Code2 size={19} /></span>
+          <span>Shreya<span className="text-violet-300">.dev</span></span>
+        </a>
+        <div className="hidden items-center gap-5 lg:flex">
+          {navLinks.map(([id, label]) => <a key={id} href={`#${id}`} onClick={() => closeMenu(id)} className={`text-sm transition ${activeSection === id ? "text-violet-300" : "text-slate-400 hover:text-white"}`}>{label}</a>)}
+          <a href="/Shreya_Jadhav_Resume.pdf" download className="rounded-lg bg-violet-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-violet-500">Resume ↓</a>
         </div>
-
-
-
-        {/* Mobile Hamburger Button */}
-        <button
-          className="md:hidden text-white"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          {isOpen ? <X size={30} /> : <Menu size={30} />}
+        <button aria-label={isOpen ? "Close menu" : "Open menu"} aria-expanded={isOpen} className="rounded-lg border border-slate-700 p-2 text-slate-200 lg:hidden" onClick={() => setIsOpen(!isOpen)}>
+          {isOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
-
-
       </div>
-
-
-
-
-      {/* Mobile Menu */}
-
-      {isOpen && (
-
-        <div className="md:hidden bg-slate-950 px-6 py-5 flex flex-col gap-5">
-
-
-          {navLinks.map((link) => (
-
-            <a
-  key={link}
-  href={`#${link}`}
-  onClick={() => setActiveSection(link)}
-  className={`capitalize transition ${
-    activeSection === link
-      ? "text-blue-500"
-      : "hover:text-blue-500"
-  }`}
->
-  {link}
-</a>
-
-          ))}
-
-
-
-          <a
-            href="/Shreya_Jadhav_Resume.pdf"
-            download
-            className="bg-blue-600 px-5 py-2 rounded-xl text-center hover:bg-blue-700"
-          >
-            Resume
-          </a>
-
-
+      {isOpen && <div className="border-t border-white/[0.06] bg-slate-950 px-5 py-4 lg:hidden">
+        <div className="mx-auto flex max-w-7xl flex-col gap-1">
+          {navLinks.map(([id, label]) => <a key={id} href={`#${id}`} onClick={() => closeMenu(id)} className={`rounded-lg px-3 py-3 text-sm ${activeSection === id ? "bg-violet-500/10 text-violet-300" : "text-slate-300 hover:bg-slate-900"}`}>{label}</a>)}
+          <a href="/Shreya_Jadhav_Resume.pdf" download className="mt-2 rounded-lg bg-violet-600 px-4 py-3 text-center text-sm font-semibold text-white">Download Resume</a>
         </div>
-
-      )}
-
-
+      </div>}
     </nav>
-
   );
-
 }
-
 export default Navbar;

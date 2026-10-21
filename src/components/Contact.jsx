@@ -1,55 +1,49 @@
+
+import { Mail, ArrowUpRight } from "lucide-react";
+import { FaLinkedin, FaGithub } from "react-icons/fa";
+
 function Contact() {
   return (
-    <section id="contact" className="py-20 px-6">
+    <section id="contact" className="section-wrap pb-24">
+      <div className="contact-panel">
+        <p className="section-kicker">Let's connect</p>
 
-      <h2 className="text-4xl font-bold text-center">
-        Contact Me
-      </h2>
+        <h2 className="section-title">
+          Have an opportunity or an idea?
+        </h2>
 
-      <div className="max-w-3xl mx-auto mt-12 text-center">
-
-        <p className="text-gray-300 text-lg">
-          Feel free to connect with me for opportunities, collaborations, or discussions related to Data Analytics.
+        <p className="mx-auto mt-5 max-w-2xl leading-8 text-slate-400">
+          I'm open to entry-level opportunities in software development and
+          AI, and always happy to connect with people building useful technology.
         </p>
 
-        <div className="flex flex-wrap justify-center gap-4 mt-10">
-
+        <div className="mt-8 flex flex-wrap justify-center gap-3">
           <a
             href="mailto:shreyajadhav1364@gmail.com"
-            className="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-xl"
+            className="primary-button"
           >
-            Email
+            <Mail size={18} /> Email me
           </a>
 
           <a
             href="https://www.linkedin.com/in/shreya--jadhav"
             target="_blank"
-            rel="noopener noreferrer"
-            className="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-xl"
+            rel="noreferrer"
+            className="secondary-button"
           >
-            LinkedIn
+            <FaLinkedin size={18} /> LinkedIn <ArrowUpRight size={16} />
           </a>
 
           <a
             href="https://github.com/Shreya1364"
             target="_blank"
-            rel="noopener noreferrer"
-            className="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-xl"
+            rel="noreferrer"
+            className="secondary-button"
           >
-            GitHub
+            <FaGithub size={18} /> GitHub <ArrowUpRight size={16} />
           </a>
-
-          <a
-            href="tel:+919834427626"
-            className="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-xl"
-          >
-            Call Me
-          </a>
-
         </div>
-
       </div>
-
     </section>
   );
 }

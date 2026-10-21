@@ -1,94 +1,30 @@
-function Skills(){
+import { motion } from "framer-motion";
+import { Braces, Database, Smartphone, BrainCircuit, Wrench } from "lucide-react";
 
-const skills=[
-"Python",
-"SQL",
-"Power BI",
-"MS Excel",
-"Dashboard Development",
-"Data Cleaning",
-"Data Visualization",
-"ETL Processes",
-"Data Modeling",
-"Power Query",
-"MySQL",
-"Data Analysis",
-"Google Cloud Platform (GCP)",
+const groups = [
+  { title: "Programming", icon: Braces, items: ["Python", "Java", "JavaScript", "SQL", "OOP fundamentals", "Basic DSA"] },
+  { title: "Software & Mobile", icon: Smartphone, items: ["React", "HTML & CSS", "Flutter", "Software Development Life Cycle", "REST APIs", "JSON"] },
+  { title: "AI & Generative AI", icon: BrainCircuit, items: ["Gemini API", "Prompt design", "Agentic AI", "RAG fundamentals", "Streamlit", "OCR integration", "NLP", "AI application development"] },
+  { title: "Databases & Tools", icon: Database, items: ["Firebase", "DBMS", "SQL Server", "MySQL", "Git & GitHub", "VS Code", "Power BI"] },
 ];
 
-
-const softSkills = [
-"Analytical Thinking",
-"Problem Solving",
-"Attention to Detail",
-"Communication",
-"Team Collaboration",
-"Adaptability",
-"Continuous Learning"
-];
-
-
-return(
-<section id="skills" className="py-20 px-6">
-
-<h2 className="text-4xl font-bold text-center">
-Skills
-</h2>
-
-
-{/* Technical Skills */}
-
-<h3 className="text-2xl font-semibold text-center mt-10">
-Technical Skills
-</h3>
-
-<div className="flex flex-wrap justify-center gap-4 mt-6">
-
-{
-skills.map(skill=>(
-
-<div
-key={skill}
-className="bg-slate-800 px-5 py-3 rounded-xl"
->
-{skill}
-</div>
-
-))
+function Skills() {
+  return (
+    <section id="skills" className="section-wrap">
+      <p className="section-kicker">What I work with</p>
+      <h2 className="section-title">Technical <span className="gradient-text">toolkit.</span></h2>
+      <p className="section-description">A growing set of tools I use across application development, databases, and AI projects.</p>
+      <div className="mt-10 grid gap-5 sm:grid-cols-2">
+        {groups.map((group, index) => {
+          const Icon = group.icon;
+          return <motion.div key={group.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.08 }} className="surface-card p-6 sm:p-7">
+            <div className="mb-5 flex items-center gap-3"><div className="icon-tile"><Icon size={21} /></div><h3 className="text-lg font-semibold text-white">{group.title}</h3></div>
+            <div className="flex flex-wrap gap-2">{group.items.map(item => <span key={item} className="skill-chip">{item}</span>)}</div>
+          </motion.div>;
+        })}
+      </div>
+      <div className="mt-6 flex items-center gap-3 text-sm text-slate-500"><Wrench size={16} /> Skills reflect my current experience and learning; I'm continuously expanding them through projects.</div>
+    </section>
+  );
 }
-
-</div>
-
-
-
-{/* Soft Skills */}
-
-<h3 className="text-2xl font-semibold text-center mt-12">
-Soft Skills
-</h3>
-
-
-<div className="flex flex-wrap justify-center gap-4 mt-6">
-
-{
-softSkills.map(skill=>(
-
-<div
-key={skill}
-className="bg-slate-800 px-5 py-3 rounded-xl"
->
-{skill}
-</div>
-
-))
-}
-
-</div>
-
-
-</section>
-)
-
-}
-
 export default Skills;
